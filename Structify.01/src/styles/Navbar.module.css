@@ -1,0 +1,129 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--navbar-bg);
+  color: var(--navbar-text);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    
+
+}
+
+
+
+.leftSection {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  margin-right: 1rem;
+  width: 40px;
+  height: 40px;
+}
+
+.brandName {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.rightSection {
+  display: flex;
+  align-items: center;
+}
+
+.themeSelector {
+  position: relative;
+}
+
+.themeButton {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  transition: background-color 0.3s ease;
+}
+
+.themeButton:hover {
+  opacity: 0.9;
+}
+
+.themeMenu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: var(--menu-bg);
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.themeOption {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  color: var(--menu-text);
+}
+
+.themeOption:hover {
+  background-color: var(--menu-hover);
+}
+
+.themeOption.active {
+  font-weight: bold;
+  background-color: var(--menu-active);
+}
+
+/* Theme variables */
+:root {
+  --navbar-bg: #f8f9fa;
+  --navbar-text: #333;
+  --button-bg: #e9ecef;
+  --button-text: #333;
+  --menu-bg: #ffffff;
+  --menu-text: #333;
+  --menu-hover: #f1f3f5;
+  --menu-active: #e9ecef;
+}
+
+:global(.dark) {
+  --navbar-bg: #333;
+  --navbar-text: #f8f9fa;
+  --button-bg: #555;
+  --button-text: #f8f9fa;
+  --menu-bg: #444;
+  --menu-text: #f8f9fa;
+  --menu-hover: #555;
+  --menu-active: #666;
+}
+
+:global(.blue) {
+  --navbar-bg: #e3f2fd;
+  --navbar-text: #0d47a1;
+  --button-bg: #bbdefb;
+  --button-text: #0d47a1;
+  --menu-bg: #e3f2fd;
+  --menu-text: #0d47a1;
+  --menu-hover: #bbdefb;
+  --menu-active: #90caf9;
+}
+
+:global(.green) {
+  --navbar-bg: #e8f5e9;
+  --navbar-text: #1b5e20;
+  --button-bg: #c8e6c9;
+  --button-text: #1b5e20;
+  --menu-bg: #e8f5e9;
+  --menu-text: #1b5e20;
+  --menu-hover: #c8e6c9;
+  --menu-active: #a5d6a7;
+}
+
