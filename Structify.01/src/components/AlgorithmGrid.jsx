@@ -5,16 +5,17 @@ import {useSearch} from '../contexts/SearchContext';
 
 
 const algorithms = [
-    {
-      title: 'Binary Search',
-      description: 'An efficient search algorithm that works on sorted arrays by repeatedly dividing the search interval in half.',
-      symbol: '🔍'
-    },
+    
    
     {
       title: 'Linear Search',
       description: 'A simple search algorithm that checks every element in the list until a match is found or the end is reached.',
       symbol: '➡️'
+    },
+    {
+      title: 'Binary Search',
+      description: 'An efficient search algorithm that works on sorted arrays by repeatedly dividing the search interval in half.',
+      symbol: '🔍'
     },
     {
       title: 'Bubble Sort',

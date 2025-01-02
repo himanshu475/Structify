@@ -7,6 +7,9 @@ const AlgorithmCard=({title, description, symbol})=>{
     if(title==='Binary Search'){
       return '/binary-search';
     }
+    if(title==='Linear Search'){
+      return '/linear-search';
+    }
 
     return '#';
   }
