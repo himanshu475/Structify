@@ -4,14 +4,44 @@ import {Link} from 'react-router-dom';
 
 const AlgorithmCard=({title, description, symbol})=>{
   const getButtonLink=(title)=>{
-    if(title==='Binary Search'){
-      return '/binary-search';
-    }
-    if(title==='Linear Search'){
-      return '/linear-search';
-    }
+    const routes = {
+      //searching
+      'Binary Search': '/binary-search',
+      'Linear Search': '/linear-search',
 
-    return '#';
+      //sorting
+      'Bubble Sort': '/bubble-sort',
+      'Quick Sort': '/quick-sort',
+      'Merge Sort':'/merge-sort',
+      'Selection Sort':'/selection-sort',
+      'Heap Sort':'/heap-sort',
+
+
+      //graph
+      'Depth-First Search':'/depth-first-search',
+      'Breadth-First Search':'/breadth-first-search',
+      'Dijkstra\'s Algorithm':'/dijkstras',
+      'Bellman-Ford Algorithm':'/bellman-ford',
+      'Floyd-Warshall Algorithm':'/Floyd-warshall',
+      'Kruskal\'s Algorithm':'/Krushkals',
+      'Prim\'s Algorithm':'/Prims',
+
+      //recursion
+      'Recursion':'/recursion',
+
+      //Dp
+      'Knapsack Problem':'/knapsack',
+      'Dynamic Programming':'/dynamic',
+      'Backtracking Algorithm':'/backtrack',
+
+      //Greedy
+      'Greedy Algorithm':'/greedy',
+
+
+    };
+  
+    // Return the corresponding route or '#' if the title is not in the map
+    return routes[title] || '#';
   }
 
   

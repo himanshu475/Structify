@@ -23,10 +23,31 @@ const algorithms = [
       symbol: '🫧'
     },
     {
+      title: 'Merge Sort',
+      description: 'A divide-and-conquer sorting algorithm that divides the array into halves, sorts them, and then merges the sorted halves.',
+      symbol: '🔀'
+    },
+    {
+      title: 'Heap Sort',
+      description: 'A comparison-based sorting algorithm that uses a binary heap to sort elements.',
+      symbol: '🏔️'
+    },
+    {
+      title: 'Selection Sort',
+      description: 'A simple sorting algorithm that repeatedly selects the smallest (or largest) element from the unsorted part of the list and moves it to the sorted part.',
+      symbol: '🎯'
+    },
+    {
       title: 'Quick Sort',
       description: 'An efficient, recursive divide-and-conquer sorting algorithm that partitions the array and sorts the partitions independently.',
       symbol: '⚡'
     },
+    {
+      title: 'Recursion',
+      description: 'A problem-solving method where a function calls itself to solve smaller instances of the problem, often used with base cases to terminate recursion.',
+      symbol: '🔁'
+    },
+    
     {
       title: 'Depth-First Search',
       description: 'A graph traversal algorithm that explores as far as possible along each branch before backtracking.',
@@ -36,6 +57,52 @@ const algorithms = [
       title: 'Breadth-First Search',
       description: 'A graph traversal algorithm that explores all the vertices of a graph at the present depth prior to moving on to the vertices at the next depth level.',
       symbol: '🌊'
+    },
+   
+    {
+      title: 'Dijkstra\'s Algorithm',
+      description: 'Finds the shortest path between nodes in a weighted graph.',
+      symbol: '🛤️'
+    },
+    {
+      title: 'Kruskal\'s Algorithm',
+      description: 'Finds the minimum spanning tree for a connected weighted graph by adding edges in increasing order of weight.',
+      symbol: '🌉'
+    },
+    {
+      title: 'Prim\'s Algorithm',
+      description: 'Constructs the minimum spanning tree for a weighted graph by starting with a single vertex and growing the tree.',
+      symbol: '🌲'
+    },
+    {
+      title: 'Bellman-Ford Algorithm',
+      description: 'Computes shortest paths from a single source vertex to all other vertices in a graph, even with negative weight edges.',
+      symbol: '🕰️'
+    },
+    {
+      title: 'Floyd-Warshall Algorithm',
+      description: 'A dynamic programming algorithm to find shortest paths between all pairs of vertices in a graph.',
+      symbol: '🔄'
+    },
+    {
+      title: 'Knapsack Problem',
+      description: 'Solves optimization problems where you select items with given weights and values to maximize value without exceeding the weight limit.',
+      symbol: '🎒'
+    },
+    {
+      title: 'Backtracking Algorithm',
+      description: 'A problem-solving algorithm that explores all possible solutions by building a solution incrementally and abandoning solutions that fail.',
+      symbol: '🔙'
+    },
+    {
+      title: 'Dynamic Programming',
+      description: 'A method for solving problems by breaking them down into simpler subproblems, solving each just once, and storing their solutions.',
+      symbol: '💡'
+    },
+    {
+      title: 'Greedy Algorithm',
+      description: 'An algorithmic approach that makes the best choice at each step, assuming it will lead to the optimal solution.',
+      symbol: '🤑'
     }
   ];
 

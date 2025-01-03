@@ -1,5 +1,5 @@
 'use client'
-import './tailwind.css';
+// import './tailwind.css';
 import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { ChevronLeft, ChevronRight, Search, RotateCcw, Code, BookOpen, RefreshCw } from 'lucide-react'

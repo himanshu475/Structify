@@ -2,7 +2,8 @@
 module.exports = {
     darkMode: ["class"],
     content: [
-    "./src/AlgorithmPages/**/*.{js,jsx,ts,tsx}",  // Adjust paths based on your project structure
+    "./src/AlgorithmPages/**/*.{js,jsx,ts,tsx}",  
+	"./src/**/*.{js,jsx,ts,tsx}", // Adjust paths based on your project structure
   ],
   theme: {
   	extend: {
