@@ -1,4 +1,5 @@
 import React from "react";
+import { Analytics } from '@vercel/analytics/react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import MainLayout from './components/MainLayout'
 import './App.css';
@@ -31,6 +32,8 @@ import Greedy from './AlgorithmPages/Greedy/Greedy'
 function App() {
   return (
     <Router>
+      {/* Add the Analytics component here to track all pages */}
+      <Analytics />
       <Routes>
         <Route path="/" element={<MainLayout/>}/>
         <Route path="/binary-search" element={<BinarySearch/>}/>
