@@ -7,6 +7,7 @@ import SearchBar from './SearchBar';
 import styles from '../styles/MainLayout.module.css';
 import AlgorithmGrid from "./AlgorithmGrid";
 import { SearchProvider } from "../contexts/SearchContext";
+import Footer from "./Footer";
 
 
 function MainLayout({ children }) {
@@ -24,6 +25,7 @@ function MainLayout({ children }) {
                 <AlgorithmGrid/> 
                 
             </main>
+            <Footer/>
 
         </div>
         </SearchProvider>
