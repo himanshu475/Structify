@@ -1,11 +1,11 @@
-'use client'
+'use client';
 
-import React, { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
-import { ChevronLeft, ChevronRight, Play, RotateCcw, Code, BookOpen, RefreshCw } from 'lucide-react'
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { ChevronLeft, ChevronRight, Play, RotateCcw, Code, BookOpen, RefreshCw } from 'lucide-react';
 
-const DEFAULT_ARRAY_SIZE = 10
-const ANIMATION_DURATION = 0.5
+const DEFAULT_ARRAY_SIZE = 10;
+const ANIMATION_DURATION = 0.5;
 
 function Button({ onClick, disabled, children, className }) {
   return (
@@ -16,7 +16,7 @@ function Button({ onClick, disabled, children, className }) {
     >
       {children}
     </button>
-  )
+  );
 }
 
 function Input({ type, placeholder, onChange, className, value }) {
@@ -28,7 +28,7 @@ function Input({ type, placeholder, onChange, className, value }) {
       value={value}
       className={`px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 ${className}`}
     />
-  )
+  );
 }
 
 function Card({ children, className }) {
@@ -36,7 +36,7 @@ function Card({ children, className }) {
     <div className={`bg-white shadow-md rounded-lg ${className}`}>
       {children}
     </div>
-  )
+  );
 }
 
 function PseudoCode() {
@@ -55,7 +55,7 @@ function PseudoCode() {
         </pre>
       </div>
     </Card>
-  )
+  );
 }
 
 function Theory() {
@@ -83,115 +83,115 @@ function Theory() {
         </ul>
       </div>
     </Card>
-  )
+  );
 }
 
 export default function BubbleSort() {
-  const [array, setArray] = useState([])
-  const [steps, setSteps] = useState([])
-  const [currentStep, setCurrentStep] = useState(-1)
-  const [stepDescriptions, setStepDescriptions] = useState([])
-  const [isSorting, setIsSorting] = useState(false)
-  const [isSorted, setIsSorted] = useState(false)
-  const [showPseudoCode, setShowPseudoCode] = useState(false)
-  const [showTheory, setShowTheory] = useState(false)
-  const [customArrayInput, setCustomArrayInput] = useState('')
-  const [errorMessage, setErrorMessage] = useState('')
+  const [array, setArray] = useState([]);
+  const [steps, setSteps] = useState([]);
+  const [currentStep, setCurrentStep] = useState(-1);
+  const [stepDescriptions, setStepDescriptions] = useState([]);
+  const [isSorting, setIsSorting] = useState(false);
+  const [isSorted, setIsSorted] = useState(false);
+  const [showPseudoCode, setShowPseudoCode] = useState(false);
+  const [showTheory, setShowTheory] = useState(false);
+  const [customArrayInput, setCustomArrayInput] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
-    generateRandomArray()
-  }, [])
+    generateRandomArray();
+  }, []);
 
   const generateRandomArray = () => {
-    const newArray = Array.from({ length: DEFAULT_ARRAY_SIZE }, () => Math.floor(Math.random() * 100) + 1)
-    setArray(newArray)
-    setCustomArrayInput(newArray.join(', '))
-  }
+    const newArray = Array.from({ length: DEFAULT_ARRAY_SIZE }, () => Math.floor(Math.random() * 100) + 1);
+    setArray(newArray);
+    setCustomArrayInput(newArray.join(', '));
+  };
 
   const handleCustomArrayInput = (input) => {
-    setCustomArrayInput(input)
+    setCustomArrayInput(input);
     try {
       const newArray = input.split(',').map(num => {
-        const parsed = parseInt(num.trim(), 10)
-        if (isNaN(parsed)) throw new Error('Invalid number')
-        return parsed
-      })
-      if (newArray.length === 0) throw new Error('Array is empty')
-      if (newArray.length > 20) throw new Error('Array size should not exceed 20 elements')
-      setArray(newArray)
-      setErrorMessage('')
+        const parsed = parseInt(num.trim(), 10);
+        if (isNaN(parsed)) throw new Error('Invalid number');
+        return parsed;
+      });
+      if (newArray.length === 0) throw new Error('Array is empty');
+      if (newArray.length > 20) throw new Error('Array size should not exceed 20 elements');
+      setArray(newArray);
+      setErrorMessage('');
     } catch (error) {
-      setErrorMessage(error.message)
+      setErrorMessage(error.message);
     }
-  }
+  };
 
   const bubbleSort = (arr) => {
-    const steps = []
-    const descriptions = []
-    const n = arr.length
-    let swapped
+    const steps = [];
+    const descriptions = [];
+    const n = arr.length;
+    let swapped;
 
     for (let i = 0; i < n - 1; i++) {
-      swapped = false
+      swapped = false;
       for (let j = 0; j < n - i - 1; j++) {
-        steps.push({ comparing: [j, j + 1], swapping: false })
-        descriptions.push(`Comparing elements at indices ${j} and ${j + 1}`)
+        steps.push({ comparing: [j, j + 1], swapping: false });
+        descriptions.push(`Comparing elements at indices ${j} and ${j + 1}`);
         
         if (arr[j] > arr[j + 1]) {
-          [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]]
-          swapped = true
-          steps.push({ comparing: [j, j + 1], swapping: true })
-          descriptions.push(`Swapping elements at indices ${j} and ${j + 1}`)
+          [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+          swapped = true;
+          steps.push({ comparing: [j, j + 1], swapping: true });
+          descriptions.push(`Swapping elements at indices ${j} and ${j + 1}`);
         }
       }
-      if (!swapped) break
+      if (!swapped) break;
     }
 
-    return [steps, descriptions]
-  }
+    return [steps, descriptions];
+  };
 
   const handleSort = () => {
-    const [sortSteps, sortDescriptions] = bubbleSort([...array])
-    setSteps(sortSteps)
-    setStepDescriptions(sortDescriptions)
-    setCurrentStep(0)
-    setIsSorting(true)
-    setIsSorted(false)
-  }
+    const [sortSteps, sortDescriptions] = bubbleSort([...array]);
+    setSteps(sortSteps);
+    setStepDescriptions(sortDescriptions);
+    setCurrentStep(0);
+    setIsSorting(true);
+    setIsSorted(false);
+  };
 
   const handleStepForward = () => {
     if (currentStep < steps.length - 1) {
-      setCurrentStep(currentStep + 1)
+      setCurrentStep(currentStep + 1);
       if (steps[currentStep + 1].swapping) {
-        const newArray = [...array]
-        const [i, j] = steps[currentStep + 1].comparing
-        ;[newArray[i], newArray[j]] = [newArray[j], newArray[i]]
-        setArray(newArray)
+        const newArray = [...array];
+        const [i, j] = steps[currentStep + 1].comparing;
+        ;[newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+        setArray(newArray);
       }
       if (currentStep + 1 === steps.length - 1) {
-        setIsSorted(true)
+        setIsSorted(true);
       }
     }
-  }
+  };
 
   const handleStepBackward = () => {
     if (currentStep > 0) {
-      setCurrentStep(currentStep - 1)
+      setCurrentStep(currentStep - 1);
       if (steps[currentStep].swapping) {
-        const newArray = [...array]
-        const [i, j] = steps[currentStep].comparing
-        ;[newArray[i], newArray[j]] = [newArray[j], newArray[i]]
-        setArray(newArray)
+        const newArray = [...array];
+        const [i, j] = steps[currentStep].comparing;
+        ;[newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+        setArray(newArray);
       }
     }
-  }
+  };
 
   const handleReset = () => {
-    setCurrentStep(-1)
-    setIsSorting(false)
-    setIsSorted(false)
-    generateRandomArray()
-  }
+    setCurrentStep(-1);
+    setIsSorting(false);
+    setIsSorted(false);
+    generateRandomArray();
+  };
 
   return (
     <Card className="w-full max-w-3xl mx-auto">
@@ -247,7 +247,7 @@ export default function BubbleSort() {
                 }}
                 transition={{ duration: ANIMATION_DURATION }}
               >
-                {num}
+                <span className="text-gray-900 dark:text-white">{num}</span> {/* Updated for dark mode */}
               </motion.div>
               <div className="text-xs mt-1 text-gray-500">{index}</div>
             </div>
@@ -276,6 +276,5 @@ export default function BubbleSort() {
         {showTheory && <Theory />}
       </div>
     </Card>
-  )
+  );
 }
-

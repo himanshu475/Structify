@@ -48,9 +48,9 @@ function LinearSearch() {
     };
 
     return (
-        <div className="min-h-screen bg-gray-100 py-8 px-4">
+        <div className="min-h-screen bg-gray-100 dark:bg-gray-900 py-8 px-4"> {/* Updated for dark mode */}
             <div className="max-w-4xl mx-auto">
-                <h1 className="text-3xl font-bold text-center mb-8 text-gray-800">
+                <h1 className="text-3xl font-bold text-center mb-8 text-gray-800 dark:text-white"> {/* Updated for dark mode */}
                     Linear Search Visualization
                 </h1>
 
@@ -60,7 +60,7 @@ function LinearSearch() {
                         value={target}
                         onChange={(e) => setTarget(e.target.value)}
                         placeholder="Enter number to search"
-                        className="px-4 py-2 border rounded-lg"
+                        className="px-4 py-2 border rounded-lg dark:bg-gray-800 dark:text-white" /* Updated for dark mode */
                     />
                     <button
                         onClick={startSearch}
@@ -87,12 +87,12 @@ function LinearSearch() {
                     {array.map((num, index) => (
                         <div
                             key={index}
-                            className={`w-12 h-12 flex items-center justify-center rounded-lg text-white font-bold text-lg
+                            className={`w-12 h-12 flex items-center justify-center rounded-lg font-bold text-lg
                 ${currentIndex === index ? 'bg-yellow-500 transform scale-110' : 'bg-gray-600'}
                 ${found && currentIndex === index ? 'bg-green-500' : ''}
                 transition-all duration-200`}
                         >
-                            {num}
+                            <span className="text-gray-900 dark:text-white">{num}</span> {/* Updated for dark mode */}
                         </div>
                     ))}
                 </div>
@@ -120,9 +120,9 @@ Output: index of target or -1 if not found
                     </div>
                 )}
 
-                <div className="mt-8 bg-white p-6 rounded-lg shadow">
-                    <h2 className="text-xl font-bold mb-4">How it works:</h2>
-                    <ul className="list-disc list-inside space-y-2 text-gray-700">
+                <div className="mt-8 bg-white dark:bg-gray-800 p-6 rounded-lg shadow"> {/* Updated for dark mode */}
+                    <h2 className="text-xl font-bold mb-4 dark:text-white">How it works:</h2> {/* Updated for dark mode */}
+                    <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300"> {/* Updated for dark mode */}
                         <li>Linear search checks each element one by one</li>
                         <li>Yellow highlight shows the current element being checked</li>
                         <li>Green highlight shows when the target is found</li>

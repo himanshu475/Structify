@@ -15,3 +15,13 @@
   margin-top: 2rem;
 }
 
+/* Dark mode styles */
+body.dark {
+  --bg-color: #1a1a1a; /* Dark background */
+  --text-color: #ffffff; /* Light text for visibility */
+}
+
+body.light {
+  --bg-color: #ffffff; /* Light background */
+  --text-color: #000000; /* Dark text */
+}
