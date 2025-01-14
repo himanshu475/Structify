@@ -20,7 +20,7 @@ const algorithms = [
     {
       title: 'Bubble Sort',
       description: 'A simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order.',
-      symbol: '🫧' || '💨' 
+      symbol: '💭' 
     },
     {
       title: 'Merge Sort',
