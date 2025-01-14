@@ -1,13 +1,9 @@
-
-// import './tailwind.css';
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Search, RotateCcw, Code, BookOpen, RefreshCw } from 'lucide-react';
 
 const DEFAULT_ARRAY_SIZE = 15;
 const ANIMATION_DURATION = 0.5;
-
-// ... (Button, Input, Card, PseudoCode, and Theory components remain unchanged)
 
 function Button({ onClick, disabled, children, className }) {
   return (
@@ -39,6 +35,60 @@ function Card({ children, className }) {
       {children}
     </div>
   )
+}
+
+function PseudoCode() {
+  return (
+    <div className="mt-4 bg-white shadow-md rounded-lg dark:bg-gray-800">
+      <div className="p-6">
+        <h3 className="text-lg font-semibold mb-2 dark:text-white">Binary Search Pseudo-code</h3>
+        <pre className="text-sm bg-gray-100 p-4 rounded-md overflow-x-auto dark:bg-gray-700 dark:text-white">
+          {`function binarySearch(arr, target):
+    left = 0
+    right = arr.length - 1
+
+    while left <= right:
+        mid = (left + right) // 2
+
+        if arr[mid] == target:
+            return mid
+        else if arr[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+
+    return -1  // Target not found`}
+        </pre>
+      </div>
+    </div>
+  );
+}
+
+function Theory() {
+  return (
+    <div className="mt-4 bg-white shadow-md rounded-lg dark:bg-gray-800">
+      <div className="p-6">
+        <h3 className="text-lg font-semibold mb-2 dark:text-white">Binary Search Theory</h3>
+        <p className="mb-2 dark:text-white">
+          Binary search is an efficient algorithm for searching a sorted array by repeatedly dividing the search interval in half.
+        </p>
+        <h4 className="font-semibold mt-2 dark:text-white">Why use Binary Search?</h4>
+        <ul className="list-disc pl-5 space-y-1 dark:text-white">
+          <li>Time Complexity: O(log n) - much faster than linear search O(n) for large datasets</li>
+          <li>Efficient for large, sorted datasets</li>
+          <li>Requires minimal comparisons to find the target</li>
+        </ul>
+        <h4 className="font-semibold mt-2 dark:text-white">How it works:</h4>
+        <ol className="list-decimal pl-5 space-y-1 dark:text-white">
+          <li>Start with the middle element of the entire array</li>
+          <li>If the target value is equal to the middle element, we're done</li>
+          <li>If the target value is less than the middle element, narrow the interval to the lower half</li>
+          <li>Otherwise, narrow it to the upper half</li>
+          <li>Repeat steps 1-4 until the value is found or the interval is empty</li>
+        </ol>
+      </div>
+    </div>
+  );
 }
 
 export default function BinarySearch() {
@@ -144,9 +194,9 @@ export default function BinarySearch() {
   };
 
   return (
-    <Card className="w-full max-w-3xl mx-auto dark:bg-gray-800"> {/* Updated for dark mode */}
+    <Card className="w-full max-w-3xl mx-auto dark:bg-gray-800">
       <div className="p-6">
-        <h2 className="text-2xl font-bold text-center mb-6 dark:text-white"> {/* Updated for dark mode */}
+        <h2 className="text-2xl font-bold text-center mb-6 dark:text-white">
           Binary Search Visualization
         </h2>
         <div className="flex flex-col space-y-4 mb-6">
@@ -156,7 +206,7 @@ export default function BinarySearch() {
                 type="number"
                 placeholder="Enter number"
                 onChange={(e) => setTarget(parseInt(e.target.value))}
-                className="w-32 dark:bg-gray-700 dark:text-white" /* Updated for dark mode */
+                className="w-32 dark:bg-gray-700 dark:text-white"
               />
               <Button onClick={handleSearch} disabled={isSearching}>
                 <Search className="mr-2 h-4 w-4" /> Search
@@ -180,7 +230,7 @@ export default function BinarySearch() {
               placeholder="Enter custom array (comma-separated)"
               value={customArrayInput}
               onChange={(e) => handleCustomArrayInput(e.target.value)}
-              className="w-full dark:bg-gray-700 dark:text-white" /* Updated for dark mode */
+              className="w-full dark:bg-gray-700 dark:text-white"
             />
             {errorMessage && <p className="text-red-500 text-sm">{errorMessage}</p>}
             <Button onClick={generateDefaultArray} className="text-sm">
@@ -188,10 +238,24 @@ export default function BinarySearch() {
             </Button>
           </div>
         </div>
-        <div className="flex flex-wrap justify-center gap-2 mb-4">
+        <div className="flex flex-wrap justify-center gap-2 mb-4 mt-8">
           {array.map((num, index) => (
             <div key={index} className="flex flex-col items-center">
-              <div className="text-xs mb-1 text-gray-400 dark:text-gray-300">{index}</div> {/* Updated for dark mode */}
+              <div className="h-6 mb-1">
+                {currentStep >= 0 && (
+                  <>
+                    {index === steps[currentStep].left && (
+                      <span className="text-xs text-blue-500 font-bold">L</span>
+                    )}
+                    {index === steps[currentStep].right && (
+                      <span className="text-xs text-blue-500 font-bold">R</span>
+                    )}
+                    {index === steps[currentStep].mid && (
+                      <span className="text-xs text-yellow-500 font-bold">M</span>
+                    )}
+                  </>
+                )}
+              </div>
               <motion.div
                 className={`w-10 h-10 flex items-center justify-center border ${
                   currentStep >= 0 &&
@@ -201,7 +265,7 @@ export default function BinarySearch() {
                     : 'border-gray-300'
                 } ${
                   currentStep >= 0 && index === steps[currentStep].mid
-                    ? 'bg-yellow-200'
+                    ? 'bg-green-700'
                     : ''
                 } ${
                   currentStep >= 0 &&
@@ -209,27 +273,15 @@ export default function BinarySearch() {
                   index === steps[currentStep].mid
                     ? 'bg-green-200'
                     : ''
-                } relative`}
+                }`}
                 animate={{
                   scale: currentStep >= 0 && index === steps[currentStep].mid ? 1.1 : 1,
                 }}
                 transition={{ duration: ANIMATION_DURATION }}
               >
-                <span className="text-gray-900 dark:text-white">{num}</span> {/* Updated for dark mode */}
+                <span className="text-gray-900 dark:text-white">{num}</span>
               </motion.div>
-              {currentStep >= 0 && (
-                <>
-                  {index === steps[currentStep].left && (
-                    <span className="absolute -bottom-6 left-0 text-xs text-blue-500">L</span>
-                  )}
-                  {index === steps[currentStep].right && (
-                    <span className="absolute -bottom-6 right-0 text-xs text-blue-500">R</span>
-                  )}
-                  {index === steps[currentStep].mid && (
-                    <span className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-xs text-yellow-500">M</span>
-                  )}
-                </>
-              )}
+              <div className="text-xs mt-1 text-gray-400 dark:text-gray-300">{index}</div>
             </div>
           ))}
         </div>
@@ -242,13 +294,13 @@ export default function BinarySearch() {
           </Button>
         </div>
         {currentStep >= 0 && (
-          <div className="mt-4 p-4 bg-gray-100 dark:bg-gray-700 rounded-md"> {/* Updated for dark mode */}
-            <h3 className="text-lg font-semibold mb-2 dark:text-white">Current Step:</h3> {/* Updated for dark mode */}
-            <p className="dark:text-gray-300">{stepDescriptions[currentStep]}</p> {/* Updated for dark mode */}
+          <div className="mt-4 p-4 bg-gray-100 dark:bg-gray-700 rounded-md">
+            <h3 className="text-lg font-semibold mb-2 dark:text-white">Current Step:</h3>
+            <p className="dark:text-gray-300">{stepDescriptions[currentStep]}</p>
           </div>
         )}
         {currentStep >= 0 && (
-          <div className="text-center mt-4 dark:text-white"> {/* Updated for dark mode */}
+          <div className="text-center mt-4 dark:text-white">
             {steps[currentStep].found
               ? `Found ${target} at index ${steps[currentStep].mid}`
               : currentStep === steps.length - 1
@@ -262,3 +314,4 @@ export default function BinarySearch() {
     </Card>
   );
 }
+

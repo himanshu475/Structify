@@ -12,12 +12,13 @@ function Button({ onClick, disabled, children, className }) {
     <button
       onClick={onClick}
       disabled={disabled}
-      className={`px-4 py-2 bg-black text-white rounded hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed flex items-center ${className}`}
+      className={`px-4 py-2 bg-black text-white rounded hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed flex items-center dark:bg-gray-600 dark:text-white ${className}`}
     >
       {children}
     </button>
   );
 }
+
 
 function Input({ type, placeholder, onChange, className, value }) {
   return (
@@ -26,25 +27,27 @@ function Input({ type, placeholder, onChange, className, value }) {
       placeholder={placeholder}
       onChange={onChange}
       value={value}
-      className={`px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 ${className}`}
+      className={`px-3 py-2 border border-gray-300 dark:border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white ${className}`}
     />
   );
 }
 
+
 function Card({ children, className }) {
   return (
-    <div className={`bg-white shadow-md rounded-lg ${className}`}>
+    <div className={`bg-white dark:bg-gray-800 shadow-md rounded-lg ${className}`}>
       {children}
     </div>
   );
 }
 
+
 function PseudoCode() {
   return (
-    <Card className="mt-4">
+    <Card className="mt-4 bg-white dark:bg-gray-800">
       <div className="p-4">
-        <h3 className="text-lg font-semibold mb-2">Bubble Sort Pseudo-code</h3>
-        <pre className="text-sm bg-gray-100 p-4 rounded-md overflow-x-auto">
+        <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">Bubble Sort Pseudo-code</h3>
+        <pre className="text-sm bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white p-4 rounded-md overflow-x-auto">
           {`function bubbleSort(arr):
     n = arr.length
     for i from 0 to n-1:
@@ -57,6 +60,7 @@ function PseudoCode() {
     </Card>
   );
 }
+
 
 function Theory() {
   return (
@@ -233,22 +237,21 @@ export default function BubbleSort() {
         <div className="flex flex-wrap justify-center gap-2 mb-4">
           {array.map((num, index) => (
             <div key={index} className="flex flex-col items-center">
-              <motion.div
-                className={`w-12 h-12 flex items-center justify-center border ${
-                  currentStep >= 0 &&
-                  steps[currentStep].comparing.includes(index)
-                    ? steps[currentStep].swapping
-                      ? 'bg-green-200 border-green-500'
-                      : 'bg-yellow-200 border-yellow-500'
-                    : 'border-gray-300'
-                }`}
-                animate={{
-                  scale: currentStep >= 0 && steps[currentStep].comparing.includes(index) ? 1.1 : 1,
-                }}
-                transition={{ duration: ANIMATION_DURATION }}
-              >
-                <span className="text-gray-900 dark:text-white">{num}</span> {/* Updated for dark mode */}
-              </motion.div>
+             <motion.div
+  className={`w-12 h-12 flex items-center justify-center border ${
+    currentStep >= 0 && steps[currentStep].comparing.includes(index)
+      ? steps[currentStep].swapping
+        ? 'bg-green-200 dark:bg-green-700 border-green-500 dark:border-green-400'
+        : 'bg-yellow-200 dark:bg-yellow-700 border-yellow-500 dark:border-yellow-400'
+      : 'border-gray-300 dark:border-gray-600'
+  }`}
+  animate={{
+    scale: currentStep >= 0 && steps[currentStep].comparing.includes(index) ? 1.1 : 1,
+  }}
+  transition={{ duration: ANIMATION_DURATION }}
+>
+  <span className="text-gray-900 dark:text-white">{num}</span> {/* Updated for dark mode */}
+</motion.div>
               <div className="text-xs mt-1 text-gray-500">{index}</div>
             </div>
           ))}
@@ -262,11 +265,12 @@ export default function BubbleSort() {
           </Button>
         </div>
         {currentStep >= 0 && (
-          <div className="mt-4 p-4 bg-gray-100 rounded-md">
-            <h3 className="text-lg font-semibold mb-2">Current Step:</h3>
-            <p>{stepDescriptions[currentStep]}</p>
-          </div>
-        )}
+  <div className="mt-4 p-4 bg-gray-100 dark:bg-gray-800 rounded-md">
+    <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">Current Step:</h3>
+    <p className="text-gray-900 dark:text-white">{stepDescriptions[currentStep]}</p>
+  </div>
+)}
+
         {isSorted && (
           <div className="mt-4 p-4 bg-green-100 rounded-md">
             <p className="text-green-700 font-semibold">Array is now fully sorted!</p>
