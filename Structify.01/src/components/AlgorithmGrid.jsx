@@ -23,6 +23,26 @@ const algorithms = [
       symbol: '💭' 
     },
     {
+      title: 'Selection Sort',
+      description: 'A simple sorting algorithm that repeatedly selects the smallest (or largest) element from the unsorted part of the list and moves it to the sorted part.',
+      symbol: '🎯'
+    },
+    {
+      title: 'Insertion Sort',
+      description: 'A simple sorting algorithm that builds the sorted list one item at a time by inserting elements into their correct position.',
+      symbol: '📝'
+    },
+    {
+      title: 'Counting Sort',
+      description: 'A non-comparative algorithm that counts the frequency of each element and calculates their positions in the sorted array.',
+      symbol: '📊'
+    },
+    {
+      title: 'Bucket Sort',
+      description: 'A distribution-based algorithm that divides elements into buckets and sorts each bucket individually.',
+      symbol: '🪣'
+    },
+    {
       title: 'Merge Sort',
       description: 'A divide-and-conquer sorting algorithm that divides the array into halves, sorts them, and then merges the sorted halves.',
       symbol: '🔀'
@@ -32,11 +52,7 @@ const algorithms = [
       description: 'A comparison-based sorting algorithm that uses a binary heap to sort elements.',
       symbol: '🏔️'
     },
-    {
-      title: 'Selection Sort',
-      description: 'A simple sorting algorithm that repeatedly selects the smallest (or largest) element from the unsorted part of the list and moves it to the sorted part.',
-      symbol: '🎯'
-    },
+    
     {
       title: 'Quick Sort',
       description: 'An efficient, recursive divide-and-conquer sorting algorithm that partitions the array and sorts the partitions independently.',

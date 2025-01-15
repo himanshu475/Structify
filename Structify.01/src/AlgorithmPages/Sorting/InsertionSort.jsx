@@ -43,17 +43,17 @@ function PseudoCode() {
   return (
     <Card className="mt-4 bg-white dark:bg-gray-800">
       <div className="p-4">
-        <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">Selection Sort Pseudo-code</h3>
+        <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">Insertion Sort Pseudo-code</h3>
         <pre className="text-sm bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white p-4 rounded-md overflow-x-auto">
-          {`function selectionSort(arr):
+          {`function insertionSort(arr):
     n = arr.length
-    for i from 0 to n-1:
-        minIndex = i
-        for j from i+1 to n:
-            if arr[j] < arr[minIndex]:
-                minIndex = j
-        if minIndex != i:
-            swap arr[i] and arr[minIndex]
+    for i from 1 to n-1:
+        key = arr[i]
+        j = i - 1
+        while j >= 0 and arr[j] > key:
+            arr[j + 1] = arr[j]
+            j = j - 1
+        arr[j + 1] = key
     return arr`}
         </pre>
       </div>
@@ -65,32 +65,33 @@ function Theory() {
   return (
     <Card className="mt-4">
       <div className="p-4">
-        <h3 className="text-lg font-semibold mb-2">Selection Sort Theory</h3>
+        <h3 className="text-lg font-semibold mb-2">Insertion Sort Theory</h3>
         <p className="mb-2">
-          Selection Sort is a simple sorting algorithm that repeatedly selects the smallest element from the unsorted portion of the list and places it at the beginning of the sorted portion.
+          Insertion Sort is a simple sorting algorithm that builds the final sorted array one item at a time. It is much less efficient on large lists than more advanced algorithms such as quicksort, heapsort, or merge sort.
         </p>
         <h4 className="font-semibold mt-2">How it works:</h4>
         <ol className="list-decimal pl-5 space-y-1">
-          <li>Start with the first element as the "minimum"</li>
-          <li>Search the rest of the array to find if there's a smaller element</li>
-          <li>If a smaller element is found, it becomes the new "minimum"</li>
-          <li>After searching the entire array, swap the "minimum" with the first element of the unsorted portion</li>
-          <li>Move to the next element and repeat steps 1-4 until the entire array is sorted</li>
+          <li>Start with the second element (index 1)</li>
+          <li>Compare it with the elements before it</li>
+          <li>If the element is smaller, shift the larger elements to the right</li>
+          <li>Insert the element in its correct position</li>
+          <li>Move to the next element and repeat steps 2-4 until the end of the array</li>
         </ol>
         <h4 className="font-semibold mt-2">Characteristics:</h4>
         <ul className="list-disc pl-5 space-y-1">
           <li>Time Complexity: O(n²) - not efficient for large datasets</li>
           <li>Space Complexity: O(1) - only requires a constant amount of additional memory space</li>
-          <li>Not stable sorting algorithm</li>
-          <li>Simple to implement and understand</li>
-          <li>Performs well on small lists</li>
+          <li>Stable sorting algorithm</li>
+          <li>Adaptive: efficient for data sets that are already substantially sorted</li>
+          <li>Simple implementation</li>
+          <li>Efficient for small data sets</li>
         </ul>
       </div>
     </Card>
   );
 }
 
-export default function SelectionSort() {
+export default function InsertionSort() {
   const [array, setArray] = useState([]);
   const [steps, setSteps] = useState([]);
   const [currentStep, setCurrentStep] = useState(-1);
@@ -129,34 +130,37 @@ export default function SelectionSort() {
     }
   };
 
-  const selectionSort = (arr) => {
+  const insertionSort = (arr) => {
     const steps = [];
     const descriptions = [];
     const n = arr.length;
+    const sortedArr = [...arr];
 
-    for (let i = 0; i < n - 1; i++) {
-      let minIndex = i;
-      for (let j = i + 1; j < n; j++) {
-        steps.push({ comparing: [minIndex, j], swapping: false });
-        descriptions.push(`Comparing elements at indices ${minIndex} and ${j}`);
-        
-        if (arr[j] < arr[minIndex]) {
-          minIndex = j;
-        }
+    for (let i = 1; i < n; i++) {
+      let key = sortedArr[i];
+      let j = i - 1;
+
+      steps.push({ array: [...sortedArr], current: i, comparing: [i, j] });
+      descriptions.push(`Start inserting element ${key} at index ${i}`);
+
+      while (j >= 0 && sortedArr[j] > key) {
+        sortedArr[j + 1] = sortedArr[j];
+        j = j - 1;
+
+        steps.push({ array: [...sortedArr], current: i, comparing: [j + 1, j], shifting: true });
+        descriptions.push(`Shift ${sortedArr[j + 1]} to the right`);
       }
-      
-      if (minIndex !== i) {
-        steps.push({ comparing: [i, minIndex], swapping: true });
-        descriptions.push(`Swapping elements at indices ${i} and ${minIndex}`);
-        [arr[i], arr[minIndex]] = [arr[minIndex], arr[i]];
-      }
+
+      sortedArr[j + 1] = key;
+      steps.push({ array: [...sortedArr], current: i, inserting: j + 1 });
+      descriptions.push(`Insert ${key} at index ${j + 1}`);
     }
 
     return [steps, descriptions];
   };
 
   const handleSort = () => {
-    const [sortSteps, sortDescriptions] = selectionSort([...array]);
+    const [sortSteps, sortDescriptions] = insertionSort([...array]);
     setSteps(sortSteps);
     setStepDescriptions(sortDescriptions);
     setCurrentStep(0);
@@ -167,12 +171,7 @@ export default function SelectionSort() {
   const handleStepForward = () => {
     if (currentStep < steps.length - 1) {
       setCurrentStep(currentStep + 1);
-      if (steps[currentStep + 1].swapping) {
-        const newArray = [...array];
-        const [i, j] = steps[currentStep + 1].comparing;
-        [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
-        setArray(newArray);
-      }
+      setArray(steps[currentStep + 1].array);
       if (currentStep + 1 === steps.length - 1) {
         setIsSorted(true);
       }
@@ -182,12 +181,7 @@ export default function SelectionSort() {
   const handleStepBackward = () => {
     if (currentStep > 0) {
       setCurrentStep(currentStep - 1);
-      if (steps[currentStep].swapping) {
-        const newArray = [...array];
-        const [i, j] = steps[currentStep].comparing;
-        [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
-        setArray(newArray);
-      }
+      setArray(steps[currentStep - 1].array);
     }
   };
 
@@ -201,7 +195,7 @@ export default function SelectionSort() {
   return (
     <Card className="w-full max-w-3xl mx-auto">
       <div className="p-6">
-        <h2 className="text-2xl font-bold text-center mb-6">Selection Sort Visualization</h2>
+        <h2 className="text-2xl font-bold text-center mb-6">Insertion Sort Visualization</h2>
         <div className="flex flex-col space-y-4 mb-6">
           <div className="flex flex-wrap items-center gap-3">
             <div className="flex-grow flex items-center gap-2">
@@ -240,14 +234,18 @@ export default function SelectionSort() {
             <div key={index} className="flex flex-col items-center">
               <motion.div
                 className={`w-12 h-12 flex items-center justify-center border ${
-                  currentStep >= 0 && steps[currentStep].comparing.includes(index)
-                    ? steps[currentStep].swapping
+                  currentStep >= 0 && steps[currentStep].current === index
+                    ? 'bg-blue-200 dark:bg-blue-700 border-blue-500 dark:border-blue-400'
+                    : currentStep >= 0 && steps[currentStep].comparing && steps[currentStep].comparing.includes(index)
+                    ? steps[currentStep].shifting
                       ? 'bg-green-200 dark:bg-green-700 border-green-500 dark:border-green-400'
                       : 'bg-yellow-200 dark:bg-yellow-700 border-yellow-500 dark:border-yellow-400'
+                    : currentStep >= 0 && steps[currentStep].inserting === index
+                    ? 'bg-purple-200 dark:bg-purple-700 border-purple-500 dark:border-purple-400'
                     : 'border-gray-300 dark:border-gray-600'
                 }`}
                 animate={{
-                  scale: currentStep >= 0 && steps[currentStep].comparing.includes(index) ? 1.1 : 1,
+                  scale: currentStep >= 0 && (steps[currentStep].comparing?.includes(index) || steps[currentStep].inserting === index || steps[currentStep].current === index) ? 1.1 : 1,
                 }}
                 transition={{ duration: ANIMATION_DURATION }}
               >

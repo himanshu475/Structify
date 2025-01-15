@@ -7,11 +7,15 @@ import './App.css';
 import BinarySearch from './AlgorithmPages/Searching/BinarySearch'
 import LinearSearch from "./AlgorithmPages/Searching/LinearSearch";
 
+//sorting
 import QuickSort from "./AlgorithmPages/Sorting/QuickSort";
 import BubbleSort from "./AlgorithmPages/Sorting/BubbleSort";
 import HeapSort from "./AlgorithmPages/Sorting/HeapSort";
 import MergeSort from "./AlgorithmPages/Sorting/MergeSort";
 import SelectionSort from "./AlgorithmPages/Sorting/SelectionSort";
+import InsertionSort from "./AlgorithmPages/Sorting/InsertionSort";
+import CountingSort from "./AlgorithmPages/Sorting/CountingSort";
+import BucketSort from "./AlgorithmPages/Sorting/BucketSort";
 
 import DepthFirstSearch from "./AlgorithmPages/Graph/DepthFirstSearch";
 import BreadthFirstSearch from "./AlgorithmPages/Graph/BreadthFirstSearch";
@@ -44,6 +48,9 @@ function App() {
         <Route path="/heap-sort" element={<HeapSort/>}/>
         <Route path="/merge-sort" element={<MergeSort/>}/>
         <Route path="/selection-sort" element={<SelectionSort/>}/>
+        <Route path="/insertion-sort" element={<InsertionSort/>}/>
+        <Route path="/counting-sort" element={<CountingSort/>} />
+        <Route path="/bucket-sort" element={<BucketSort/>} />
 
 
         <Route path="/depth-first-search"  element={<DepthFirstSearch/>}/>

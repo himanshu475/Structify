@@ -15,6 +15,9 @@ const AlgorithmCard=({title, description, symbol})=>{
       'Merge Sort':'/merge-sort',
       'Selection Sort':'/selection-sort',
       'Heap Sort':'/heap-sort',
+      'Insertion Sort':'/insertion-sort',
+      'Counting Sort':'/counting-sort',
+      'Bucket Sort':'/bucket-sort',
 
 
       //graph
