@@ -48,16 +48,17 @@ const algorithms = [
       symbol: '🔀'
     },
     {
+      title: 'Quick Sort',
+      description: 'An efficient, recursive divide-and-conquer sorting algorithm that partitions the array and sorts the partitions independently.',
+      symbol: '⚡'
+    },
+    {
       title: 'Heap Sort',
       description: 'A comparison-based sorting algorithm that uses a binary heap to sort elements.',
       symbol: '🏔️'
     },
     
-    {
-      title: 'Quick Sort',
-      description: 'An efficient, recursive divide-and-conquer sorting algorithm that partitions the array and sorts the partitions independently.',
-      symbol: '⚡'
-    },
+   
     {
       title: 'Recursion',
       description: 'A problem-solving method where a function calls itself to solve smaller instances of the problem, often used with base cases to terminate recursion.',
