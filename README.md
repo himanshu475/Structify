@@ -55,7 +55,7 @@ We’d love to hear your thoughts! If you have any ideas, suggestions, or find a
    - Share your thoughts, ideas, or improvements.  
 
 3️⃣ **Connect on LinkedIn**  
-   - 📩 [Your LinkedIn](| linkedin.com/in/himanshu-sali-3040bb232 |)  
+   - 📩 [LinkedIn](linkedin.com/in/himanshu-sali-3040bb232 )  
 
 Your feedback is valuable and helps us improve **Structify**! 🚀  
 
