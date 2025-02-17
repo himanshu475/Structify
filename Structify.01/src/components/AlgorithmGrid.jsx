@@ -1,6 +1,5 @@
 import React from 'react';
 import AlgorithmCard from './AlgorithmCard';
-import styles from '../styles/AlgorithmGrid.module.css';
 import {useSearch} from '../contexts/SearchContext';
 
 
@@ -50,6 +49,12 @@ const algorithms = [
     description: 'An efficient, recursive divide-and-conquer sorting algorithm that partitions the array and sorts the partitions independently.',
     symbol: '⚡'
   },
+  
+  {
+    title: 'Recursion',
+    description: 'A problem-solving method where a function calls itself to solve smaller instances of the problem, often used with base cases to terminate recursion.',
+    symbol: '🔁'
+  },
   {
     title: 'Heap Sort',
     description: 'A comparison-based sorting algorithm that uses a binary heap to sort elements.',
@@ -57,11 +62,6 @@ const algorithms = [
   },
   
  
-  {
-    title: 'Recursion',
-    description: 'A problem-solving method where a function calls itself to solve smaller instances of the problem, often used with base cases to terminate recursion.',
-    symbol: '🔁'
-  },
   
   {
     title: 'Depth-First Search',
@@ -123,39 +123,7 @@ const algorithms = [
     
   ];
 
-// function AlgorithmGrid(){
-//   const {searchTerm}=useSearch();
 
-//   const filteredAlgorithms=algorithms.filter(algorithm=>
-//     algorithm.title.toLowerCase().includes(searchTerm.toLowerCase())||
-//     algorithm.description.toLowerCase().includes(searchTerm.toLowerCase())
-//   );
-
-//   if(filteredAlgorithms.length==0){
-//     return (
-//       <div className={styles.noResult}>
-//         <p>No algorithms found matching "{searchTerm}"</p>
-//       </div>
-//     )
-//   }
-
-//     return (
-//         <div className={styles.grid}>
-//           {filteredAlgorithms.map((algorithm, index) => (
-//             <div key={index} className={styles.gridItem}>
-//               <AlgorithmCard 
-//                 title={algorithm.title} 
-//                 description={algorithm.description} 
-//                 symbol={algorithm.symbol}
-//               />
-//             </div>
-//           ))}
-//         </div>
-//       );
-
-// }
-
-// export default AlgorithmGrid;
 
 
 
